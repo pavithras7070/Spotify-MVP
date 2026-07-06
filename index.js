@@ -4,20 +4,8 @@ const cors = require('cors');
 const Groq = require('groq-sdk');
 
 const app = express();
-const allowedOrigins = [
-  'http://localhost:3000',
-  process.env.FRONTEND_URL
-].filter(Boolean);
-
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests) and allowed origins
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+  origin: '*' // Temporarily allowing all origins to debug connection
 }));
 app.use(express.json());
 
